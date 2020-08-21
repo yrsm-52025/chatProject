@@ -1,0 +1,45 @@
+.input-control-label-left {
+    color: #666666;
+}
+.input-control {
+    width: 75%;
+    margin: 60px auto 0;
+}
+
+.tip {
+    position: absolute;
+    display: none;
+    right: 20px;
+    top: -18px;
+    font-size: 12px;
+}
+
+.login-wrap {
+    position: relative;
+}
+
+.title {
+    text-align: center;
+    margin-top: 80px;
+    font-size: 30px;
+}
+
+.input-control-label-left {
+    color: #666666;
+}
+.input-control {
+    width: 75%;
+    margin: 60px auto 0;
+}
+
+.btn {
+    display: block;
+    margin: 50px auto 0;
+}
+
+.login-state {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: -30px;
+}

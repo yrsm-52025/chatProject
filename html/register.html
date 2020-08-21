@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="../zui/dist/css/zui.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../zui/dist/lib/uploader/zui.uploader.min.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <h1 class="title">注&ensp;&ensp;册</h1>
+        <div class="register-wrap">
+            <div class="input-control has-label-left has-label-right">
+                <span class="tip">用户名以字母开头, 包含字母和数字, 长度为6-100</span>
+                <input id="username" type="text" class="form-control" placeholder="">
+                <label for="username" class="input-control-label-left">用户名:</label>
+                <label for="username" class="input-control-label-right text-right text-success">请输入</label>
+            </div>
+            <div class="input-control has-label-left has-label-right">
+                <span class="tip">密码至少为6位</span>
+                <input id="password" type="password" class="form-control" placeholder="">
+                <label for="password" class="input-control-label-left">密码:</label>
+                <label for="password" class="input-control-label-right text-right text-success">请输入</label>
+            </div>
+            <div class="input-control has-label-left has-label-right">
+                <span class="tip">两次密码不一致</span>
+                <input id="repassword" type="password" class="form-control" placeholder="">
+                <label for="repassword" class="input-control-label-left">重复密码:</label>
+                <label for="repassword" class="input-control-label-right text-right text-success">请输入</label>
+            </div>
+            <div class="input-control has-label-left">
+                <span class="tip">昵称不超过 20 个字符</span>
+                <input id="nickname" type="text" class="form-control" placeholder="">
+                <label for="nickname" class="input-control-label-left">昵称:</label>
+                <label for="nickname" class="input-control-label-right text-right text-success">请输入</label>
+            </div>
+            <div class="input-control has-label-left">
+                <input id="file" type="input" class="form-control" value="" placeholder="点击上传头像(可选)" readonly="true" data-moveable="true" data-toggle="modal" data-target="#upload-file">
+                <label for="file" class="input-control-label-left">上传头像: </label>
+                <label for="file" class="input-control-label-right text-right text-success">还未上传</label>
+            </div>
+            <div class="modal fade" id="upload-file">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                            <h4 class="modal-title">上传图片</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="file" name="file" id="upload-img" accept="image/*" class="form-control">
+                            <button type="button" id="click-upload-img" class="btn btn-link form-control" style="text-align: center; margin-top: 20px;"><i class="icon icon-cloud-upload"></i>开始上传</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="button" id="to-register">点击注册</button>
+        </div>
+        <button class="btn btn-link" type="button" id="to-login">返回登录</button>
+    </div>
+    <script src="../zui/dist/lib/jquery/jquery.js"></script>
+    <script src="../zui/dist/js/zui.min.js"></script>
+    <script src="../zui/dist/lib/uploader/zui.uploader.min.js"></script>
+
+    <script>
+        var regToUsername = /^[a-zA-Z]{1}[a-zA-Z0-9]{5,99}$/;
+        var regToPassword = /[a-zA-Z0-9\.\*\/\+\-\&\$\#\@\^]{6,}/;
+        var username = null;
+        var password = null;
+        var nickname = null;
+        var head_logo = null;
+        var isTrueForUsername = false;
+        var isTrueForPassword = false;
+        var isTrueForNickname = false;
+
+        $('#username').on('input', function () {
+            if (regToUsername.test($(this).val())) {
+                isTrueForUsername = true;
+                username = $(this).val();
+                $(this).parent().find('.tip').css('display', 'none').end().find('.text-right').removeClass('text-danger').addClass('text-success').html('格式正确');
+            } else {
+                isTrueForUsername = false;
+                $(this).parent().find('.tip').css('display', 'block').end().find('.text-right').removeClass('text-success').addClass('text-danger').html('格式错误');
+            }
+        })
+
+        $('#password').on('input', function () {
+            if (regToPassword.test($(this).val())) {
+                $(this).parent().find('.tip').css('display', 'none').end().find('.text-right').removeClass('text-danger').addClass('text-success').html('格式正确');
+                if ($(this).val() == $("#repassword").val()) {
+                    isTrueForPassword = true;
+                    password = $(this).val();
+                    $('#repassword').parent().find('.tip').css('display', 'none');
+                } else {
+                    $('#repassword').parent().find('.tip').css('display', 'block');
+                    isTrueForPassword = false;
+                }
+            } else {
+                $(this).parent().find('.tip').css('display', 'block').end().find('.text-right').removeClass('text-success').addClass('text-danger').html('格式错误');
+            }
+        })
+
+        $('#repassword').on('input', function () {
+            if (regToPassword.test($(this).val())) {
+                $(this).parent().find('.text-right').removeClass('text-danger').addClass('text-success').html('格式正确');
+                if ($(this).val() == $("#password").val()) {
+                    isTrueForPassword = true;
+                    password = $(this).val();
+                    $(this).parent().find('.tip').css('display', 'none');
+                } else {
+                    isTrueForPassword = false;
+                    $(this).parent().find('.tip').css('display', 'block');
+                }
+            } else {
+                $(this).parent().find('.text-right').removeClass('text-success').addClass('text-danger').html('格式错误');
+            }
+        })
+
+        $('#nickname').on('input', function () {
+            if ($(this).val().length <= 20 && $(this).val().length >= 1) {
+                isTrueForNickname = true;
+                nickname = $(this).val();
+                $(this).parent().find('.tip').css('display', 'none').end().find('.text-right').removeClass('text-danger').addClass('text-success').html('格式正确');
+            } else {
+                isTrueForNickname = false;
+                $(this).parent().find('.tip').css('display', 'block').end().find('.text-right').removeClass('text-success').addClass('text-danger').html('格式错误');
+            }
+        })
+
+        $('#click-upload-img').click(function() {
+            if($("#upload-img")[0].files[0].length == 0) {return;}
+            var formData = new FormData();
+            formData.append('file', $("#upload-img")[0].files[0]);
+            $.ajax({
+                url: 'http://118.24.25.7/chat_api/interface/upload.php',
+                type: 'post',
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function(res) {
+                    if(res.code == 200) {
+                        head_logo = res.data.path;
+                        $("#file").attr('placeholder', res.data.name).parent().find('.text-right').css('width', "100px").html('上传成功.');
+                        new $.zui.Messager('提示信息: 上传成功',{
+                            type: 'success',
+                            time: '3000',
+                            icon: 'icon',
+                            placement: 'center'
+                        }).show();
+                        $('.modal-footer button[data-dismiss=modal]').click();
+                    }
+                },
+                error : function(err) {
+                    console.log(err)
+                }
+            })
+        })
+
+        $('#to-register').on('click', function () {
+            if (!isTrueForUsername || !isTrueForPassword || !isTrueForNickname) {
+                var errMessage = new $.zui.Messager('提示消息：请检查输入', {
+                    type: 'danger',
+                    time: 5000,
+                    icon: 'remove-circle',
+                }).show();
+            } else {
+                var data = {
+                    username,
+                    password,
+                    nickname,
+                    head_logo
+                }
+                $.ajax({
+                    url: 'http://118.24.25.7/chat_api/interface/reg.php',
+                    type: 'post',
+                    data: data,
+                    success: function (res) {
+                        var resData = res;
+                        if (resData.code == 0) {
+                            console.log(resData.data);
+                            var successMessage = new $.zui.Messager('提示消息：注册成功, 5s 后跳转到登录页面', {
+                                type: 'success',
+                                time: 5000,
+                                icon: 'check-circle-o',
+                                actions: [{
+                                    text: '返回登录',
+                                    action: function () {
+                                        location.href = '../index.html';
+                                    }
+                                }]
+                            }).show();
+                            window.localStorage[resData.data.user_id] = JSON.stringify(resData.data);
+                            setTimeout(() => {
+                                location.href = '../index.html';
+                            }, 5000);
+                        } else if (resData.code == 4) {
+                            var existMessage = new $.zui.Messager('提示消息：用户名已存在', {
+                                type: 'warning',
+                                time: 5000,
+                                icon: 'info-sign',
+                            }).show();
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                })
+            }
+        })
+
+        $('#to-login').on('click', function () {
+            location.href = '../index.html';
+        })
+    </script>
+</body>
+
+</html>

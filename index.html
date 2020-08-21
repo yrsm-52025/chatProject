@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="./zui/dist/css/zui.min.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <h1 class="title">登&ensp;&ensp;录</h1>
+        <div class="login-wrap">
+            <div class="input-control has-label-left has-label-right">
+                <span class="tip">用户名以字母开头, 包含字母和数字, 长度为6-100</span>
+                <input id="username" type="text" class="form-control" placeholder="">
+                <label for="username" class="input-control-label-left">用户名:</label>
+                <label for="username" class="input-control-label-right text-right text-success">请输入</label>
+            </div>
+            <div class="input-control has-label-left has-label-right">
+                <span class="tip">密码至少为6位</span>
+                <input id="password" type="password" class="form-control" placeholder="">
+                <label for="password" class="input-control-label-left">密码:</label>
+                <label for="password" class="input-control-label-right text-right text-success">请输入</label>
+            </div>
+            <button class="btn btn-primary" type="button" id="to-login">点击登录</button>
+        </div>
+        <button class="btn btn-link " type="button" id="to-register">用户注册</button>
+    </div>
+    <script src="./zui/dist/lib/jquery/jquery.js"></script>
+    <script src="./zui/dist/js/zui.min.js"></script>
+    <script>
+        var regToUsername = /^[a-zA-Z]{1}[a-zA-Z0-9]{5,99}$/;
+        var regToPassword = /[a-zA-Z0-9\.\*\/\+\-\&\$\#\@\^]{6,}/;
+        var username = null;
+        var password = null;
+        var isTrueForUsername = false;
+        var isTrueForPassword = false;
+
+        $('#username').on('input', function(){
+            if (regToUsername.test($(this).val())) {
+                isTrueForUsername = true;
+                username = $(this).val();
+                $(this).parent().find('.tip').css('display', 'none').end().find('.text-right').removeClass('text-danger').addClass('text-success').html('格式正确');
+            } else {
+                isTrueForUsername = false;
+                $(this).parent().find('.tip').css('display', 'block').end().find('.text-right').removeClass('text-success').addClass('text-danger').html('格式错误');
+            }
+        })
+
+        $('#password').on('input', function(){
+            if (regToPassword.test($(this).val())) {
+                $(this).parent().find('.tip').css('display', 'none').end().find('.text-right').removeClass('text-danger').addClass('text-success').html('格式正确');
+                isTrueForPassword = true;
+                password = $(this).val();
+            } else {
+                $(this).parent().find('.tip').css('display', 'block').end().find('.text-right').removeClass('text-success').addClass('text-danger').html('格式错误');
+            }
+        })
+
+        $('#to-login').on('click', function() {
+            if(!isTrueForUsername || !isTrueForPassword) {
+                var errMessage = new $.zui.Messager('提示消息：请检查输入', {
+                    type: 'danger',
+                    time: 5000,
+                    icon:'remove-circle',
+                }).show();
+            } else {
+                var data = {
+                    username: username,
+                    password: password
+                };
+                $.ajax({
+                    url: 'http://118.24.25.7/chat_api/interface/login.php',
+                    type: 'post',
+                    data: data,
+                    success: function(res) {
+                        if(res.code == 0) {
+                            window.localStorage['login_info'] = JSON.stringify(res.data);
+                            var successMessage = new $.zui.Messager('提示消息：登录成功, 3s 后跳转到主页面', {
+                                type: 'success',
+                                time: 3000,
+                                icon:'check-circle-o',
+                                actions: [{
+                                    text: '直接进入主页',
+                                    action: function() {
+                                        location.href = './html/friendpage.html';
+                                    }
+                                }]
+                            }).show();
+                            setTimeout(() => {
+                                location.href = './html/friendpage.html';
+                            }, 3000);
+                        } else {
+                            var warnMessage = new $.zui.Messager('提示消息：登录失败, 密码不正确', {
+                                type: 'warning',
+                                time: 3000,
+                                icon:'info-sign'
+                            }).show();
+                        }
+                    },
+                    error: function() {
+                        console.log(error)
+                    }
+                })
+            }
+        })
+        
+        $("#to-register").on('click', function() {
+            location.href = './html/register.html';
+        })
+    
+    </script>
+</body>
+
+</html>

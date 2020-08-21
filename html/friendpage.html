@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好友列表</title>
+    <link rel="stylesheet" href="../zui/dist/css/zui.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/friendpage.css">
+</head>
+
+<body>
+    <div class="chat-container">
+        <header>
+            <div class="avatar" data-target="#modify-head-logo" data-moveable="true" data-toggle="modal">
+                <img src="" alt="">
+            </div>
+            <div class="username"></div>
+        </header>
+        <div class="modal fade" id="modify-head-logo">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span><span class="sr-only">关闭</span>
+                        </button>
+                        <h4 class="modal-title">修改头像</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-control has-label-left">
+                            <input id="file" type="input" class="form-control" value="" placeholder="上传头像" readonly="true">
+                            <label for="file" class="input-control-label-left">上传头像: </label>
+                            <label for="file" class="input-control-label-right text-right text-success">还未上传</label>
+                        </div>
+                        <div class="input-control has-label-left">
+                            <input type="file" name="file" id="upload-img" accept="image/*" class="form-control">
+                            <button type="button" id="click-upload-img" class="btn btn-link form-control" style="text-align: center; margin-top: 20px;">
+                                <i class="icon icon-cloud-upload"></i>
+                                开始上传
+                            </button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default modify-current">确定修改</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-link exit-login" type="button"><i class="icon icon-off"></i>退出登录</button>
+        <div class="menu">
+            <div class="message-menu sub-menu sub-current">消息列表</div>
+            <div class="friend-menu sub-menu">好友列表</div>
+        </div>
+        <div class="main">
+            <div class="main-wrap message-wrap main-current">
+                <div class="friend-list message-friend-list">
+                    <ul>
+                    </ul>
+                </div>
+                <div class="session-friend session-display-default">
+                    <div class="default-display-text">左侧选择好友聊天</div>
+                </div>
+                <div class="session-friend">
+                    <div class="head"></div>
+                    <div class="session-content">
+                        <ul></ul>
+                    </div>
+                    <div class="input-message">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="input-message">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="send-message">发送</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-wrap friend-list-wrap">
+                <div class="main-head">
+                    <div class="search-friend">
+                        <div class="input-group">
+                            <div class="input-control search-box search-box-circle has-icon-left has-icon-right" id="searchbox">
+                                <input id="inputSearch" type="search" class="form-control search-input" placeholder="输入要添加用户名或昵称">
+                                <label for="inputSearch" class="input-control-icon-left search-icon"><i class="icon icon-search"></i></label>
+                            </div>
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="button" id='find-friend'>搜索好友</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="handle-apply">
+                        <div data-toggle="modal" data-scroll-inside="true" data-target="#new-friend" data-moveable="true" class="click-handle-apply">
+                            <div>新朋友<i class="icon icon-bell"><span class="label label-badge label-danger" id="friend-request-count">0</span></i></div>
+                        </div>
+                        <div class="modal fade" id="new-friend">
+                            <div class="modal-dialog ">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                                        <h4 class="modal-title">好友申请</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul></ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="friend-list has-friend-list list-current">
+                        <ul></ul>
+                    </div>
+                    <div class="friend-list search-list">
+                        <div class="search-result-head">
+                            搜索结果
+                            <button class="btn btn-primary return-friend-list" style="display: inline-block; margin-left: 10px;">返回好友列表</button>
+                        </div>
+                        <ul></ul>
+                    </div>
+                    <div class="friend-info">
+                        <div class="default">点击左侧用户展开信息</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../zui/dist/lib/jquery/jquery.js"></script>
+    <script src="../zui/dist/js/zui.min.js"></script>
+    <script src="../js/request.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/render.js"></script>
+    <script src="../js/handle.js"></script>
+
+    <script>
+        var modifyBuffHeadLogo = null;
+        $('#click-upload-img').click(function() {
+            if(!$("#upload-img")[0].files[0] || $("#upload-img")[0].files[0].length == 0) {return;}
+            var formData = new FormData();
+            formData.append('file', $("#upload-img")[0].files[0]);
+            $.ajax({
+                url: `${APIPATH}interface/upload.php`,
+                type: 'post',
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function(res) {
+                    if(res.code == 200) {
+                        modifyBuffHeadLogo = res.data.path;
+                        $("#file").attr('placeholder', res.data.name).parent().find('.text-right').css('width', "100px").html('上传成功.');
+                        new $.zui.Messager('提示信息: 上传成功',{
+                            type: 'success',
+                            time: '3000',
+                            icon: 'icon',
+                            placement: 'center'
+                        }).show();
+                    }
+                },
+                error : function(err) {
+                    console.log(err)
+                }
+            })
+        })
+        $(".modify-current").click(function() {
+            if(modifyBuffHeadLogo) {
+                $.ajax({
+                    url: `${APIPATH}interface/modifyHeadLogo.php`,
+                    type: 'post',
+                    data: {
+                        sign_str: mainPageData.sign_str,
+                        user_id: mainPageData.id,
+                        head_logo_path: modifyBuffHeadLogo
+                    },
+                    success: function(res) {
+                        if(res.code == 0) {
+                            mainPageData.headLogo = modifyBuffHeadLogo;
+                            $('.avatar img').attr('src', `${IMGPATH}${mainPageData.headLogo.replace('/chat_api', '')}`);
+                            $('.modal-footer button[data-dismiss=modal]').click();
+                            new $.zui.Messager('提示信息: 修改成功.',{
+                                type: 'success',
+                                time: '3000',
+                                icon: 'icon',
+                                placement: 'center',
+                            }).show();
+                        } else {
+                            if(res.code == 3) {
+                                console.log('签名过期')
+                            }
+                        }
+                    },
+                    error : function(err) {
+                        console.log(err)
+                    }
+                })
+                
+            } else {
+                new $.zui.Messager('提示信息: 请先上传图片.',{
+                    type: 'danger',
+                    time: '3000',
+                    icon: 'icon',
+                    placement: 'center'
+                }).show();
+                
+            }
+        })
+    </script>
+</body>
+
+</html>

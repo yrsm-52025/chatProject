@@ -1,0 +1,474 @@
+header {
+    height: 50px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 20px 0px #b7d1cf;
+    z-index: 1;
+    position: absolute;
+    width: 740px;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+}
+
+header .avatar {
+    background-color: #456;
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+header .avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+header .username {
+    text-align: center;
+    width: 680px;
+}
+
+#modify-head-logo .modal-body .input-control{
+    margin-top: 10px;
+}
+
+#modify-head-logo .modal-body .input-control:nth-child(2) input {
+    padding: 5px 10px;
+}
+#modify-head-logo .modal-body .input-control:nth-child(2) button {
+    padding: 5px 10px;
+}
+#modify-head-logo .modal-footer .btn {
+    margin: 0 auto;
+    display: inline;
+}
+
+.exit-login {
+    margin-top: 10px;
+    margin-right: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+.menu {
+    width: 80px;
+    height: 500px;
+    bottom: 0;
+    background-color: #ffffff;
+    position: absolute;
+}
+
+.menu .sub-menu {
+    width: 100%;
+    height: 60px;
+    background-color: #b9b9b9;
+    text-align: center;
+    line-height: 60px;
+    margin: 10px 0;
+    color: #5f5f5f;
+    cursor: pointer;
+}
+
+.menu .sub-current {
+    background-color: #3280fc;
+    color: #ffffff;
+}
+
+.main .main-current.main-current {
+    display: block;
+}
+
+.main .main-wrap {
+    width: 620px;
+    height: 460px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 100px;
+    top: 70px;
+    overflow: hidden;
+    border-radius: 5px;
+    display: none;
+}
+
+.friend-list-wrap .main-head {
+    width: 100%;
+    height: 60px;
+    background-color: rgb(192, 15, 192);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.friend-list-wrap .handle-apply {
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.friend-list-wrap .handle-apply .icon {
+    margin-left: 8px;
+}
+.friend-list-wrap .handle-apply .label {
+    font-size: 8px;
+    padding: 2px;
+    margin-top: -5px;
+}
+.friend-list-wrap .handle-apply .modal {
+    color: #000000;
+}
+
+.friend-list-wrap .handle-apply .modal .btn {
+    margin: 0;
+    display: inline;
+}
+.friend-list-wrap .handle-apply .modal-body{
+    background-color: #456123;
+}
+
+.friend-list-wrap .handle-apply .modal-body > ul > li {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+}
+.friend-list-wrap .handle-apply .modal-body .new-friend-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #123456;
+    overflow: hidden;
+    margin-right: 20px;
+}
+.friend-list-wrap .handle-apply .modal-body .new-friend-avatar img {
+    width: 50px;
+    height: 50px;
+}
+.friend-list-wrap .handle-apply .modal-body .new-friend-info {
+    width: 120px;
+    overflow: hidden;
+    text-align: left;
+    line-height: 30px;
+}
+.friend-list-wrap .handle-apply .modal-body .new-friend-info .new-friend-username {
+    font-size: 16px;
+}
+.friend-list-wrap .handle-apply .modal-body .request-time {
+    width: 150px;
+}
+
+.friend-list-wrap .handle-apply .modal-body .handle-apply-request .dropdown-menu {
+    left: -100px;
+}
+
+.friend-list-wrap .main-content {
+    position: relative;
+    width: 620px;
+    height: 400px;
+}
+
+.friend-list-wrap .friend-list {
+    width: 260px;
+    height: 400px;
+    background-color: #789852;
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-shadow: 4px 0 7px 0px #736666;
+    z-index: 1;
+    display: none;
+    overflow-y: auto;
+}
+.friend-list-wrap .list-current {
+    display: block;
+}
+
+.friend-list-wrap .friend-list ul {
+    margin: 0;
+    height: 400px; padding: 0;
+    overflow: hidden;
+}
+
+.friend-list-wrap .friend-list ul li {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #000;
+    color: #ffffff;
+    cursor: pointer;
+}
+.friend-list-wrap .search-result-head {
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+}
+.friend-list-wrap .friend-avatar {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-right: 20px;
+    overflow: hidden;
+}
+.friend-list-wrap .friend-avatar img {
+    width: 30px;
+    height: 30px;
+}
+.friend-list-wrap .friend-username {
+    font-size: 14px;
+}
+
+.friend-list-wrap .friend-nickname {
+    font-size: 12px;
+    color: #aaaaaa;
+}
+
+.friend-list-wrap .friend-info {
+    width: 360px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    background-color: #789987;
+}
+.friend-list-wrap .friend-info .default {
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 150px;
+}
+
+.friend-list-wrap .info-content {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    font-size: 20px;
+    color: #ffffff;
+    line-height: 30px;
+}
+
+.friend-list-wrap .info-avatar {
+    width: 80px;
+    height: 80px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.friend-list-wrap .info-avatar img {
+    width: 80px;
+    height: 80px;
+}
+
+.friend-list-wrap .info-nickname,
+.friend-list-wrap .info-username {
+    width: 200px;
+    margin: 20px 0 0 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.friend-list-wrap .texta-justify {
+    display: inline-block;
+    width: 90px;
+    text-align-last: justify;
+}
+
+.friend-list-wrap .operation {
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.friend-list-wrap .btn {
+    margin: 0;
+    outline: none;
+}
+
+.friend-list-wrap .input-control {
+    width: 100%;
+    margin: 0;
+}
+
+/* message-wrap */
+
+.message-wrap .main-content {
+    position: relative;
+    width: 620px;
+    height: 460px;
+}
+
+.message-wrap .friend-list {
+    width: 200px;
+    height: 460px;
+    background-color: #789852;
+    position: absolute;
+    left: 0;
+    top: 0;
+    box-shadow: 4px 0 7px 0px #736666;
+    z-index: 1;
+    overflow-y: auto;
+}
+.message-wrap .friend-list ul {
+    width: 200px;
+    height: 460px;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+.message-wrap .friend-list ul li {
+    max-width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #000;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.message-wrap .friend-list ul .current-friend {
+    background-color: #456456;
+}
+
+.message-wrap .friend-avatar {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-right: 5px;
+    overflow: hidden;
+}
+.message-wrap .friend-avatar img {
+    width: 20px;
+    height: 20px;
+}
+.message-wrap .friend-nickname {
+    margin-right: 5px;
+}
+
+.message-wrap .session-friend {
+    width: 420px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+}
+.message-wrap .session-display-default {
+    display: block;
+}
+.message-wrap .session-display-default .default-display-text {
+    font-size: 20px;
+    margin-top: 150px;
+    text-align: center;
+}
+
+.message-wrap .head {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #736666;
+    padding-left: 40px;
+    box-sizing: border-box;
+}
+
+.message-wrap .head-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    margin-right: 10px;
+    overflow: hidden;
+}
+.message-wrap .head-avatar img {
+    width: 30px;
+    height: 30px;
+}
+.message-wrap .session-friend-info {
+    color: aqua;
+    overflow: hidden;
+}
+.message-wrap .friend-info-id {
+    font-size: 8px;
+}
+
+.message-wrap .session-content {
+    height: 340px;
+    box-sizing: border-box;
+    overflow: auto;
+    border-bottom: 1px solid #000;
+}
+
+.message-wrap .session-content ul {
+    padding: 0 20px;
+}
+.message-wrap .session-content ul li {
+    min-height: 30px;
+    display: flex;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.message-wrap .sender {
+    width: 24px;
+    height: 24px;
+    background-color: #454552;
+    border-radius: 50%;
+    margin: 8px 10px;
+    overflow: hidden;
+}
+.message-wrap .sender img {
+    width: 24px;
+    height: 24px;
+}
+.message-wrap .message {
+    border-radius: 7px;
+    max-width: 360px;
+    min-width: 50px;
+    min-height: 30px;
+    line-height: 30px;
+    padding: 5px 5px 5px 8px;
+    background-color: #153581;
+    color: #ffffff;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+.message-wrap .session-receive {
+    flex-direction: row;
+}
+
+.message-wrap .session-send {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.message-wrap .input-message {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+.message-wrap .input-group {
+    width: 100%;
+}
+.message-wrap .btn {
+    margin: 0;
+}
